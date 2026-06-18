@@ -121,22 +121,11 @@ function SharyLanding() {
 function Logo({ light = false }: { light?: boolean }) {
   return (
     <div className="flex items-center gap-2.5">
-      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-red text-white">
-        <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-          <path
-            fill="currentColor"
-            d="M12 2l2.39 6.96H21l-5.3 3.85 2.02 6.99L12 15.9l-5.72 3.9 2.02-6.99L3 9h6.61z"
-          />
-        </svg>
-      </span>
-      <div className="flex flex-col leading-none">
-        <span className={`text-lg font-extrabold tracking-tight ${light ? "text-white" : "text-navy"}`}>
-          SHARY
-        </span>
-        <span className={`text-sm font-light tracking-tight ${light ? "text-white/80" : "text-red"}`}>
-          &amp; CO.
-        </span>
-      </div>
+      {light ? (
+        <img src="/brand/logo-dark-bg.png" alt="Shary & Co" className="h-10 w-auto" />
+      ) : (
+        <img src="/brand/logo.jpeg" alt="Shary & Co" className="h-10 w-auto" />
+      )}
     </div>
   );
 }
@@ -147,10 +136,18 @@ function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
         <Logo light />
         <nav className="hidden gap-8 text-sm font-medium text-white/80 md:flex">
-          <a href="#offer" className="hover:text-white">The Program</a>
-          <a href="#fees" className="hover:text-white">Fees</a>
-          <a href="#proof" className="hover:text-white">Success Stories</a>
-          <a href="#faq" className="hover:text-white">FAQ</a>
+          <a href="#offer" className="hover:text-white">
+            The Program
+          </a>
+          <a href="#fees" className="hover:text-white">
+            Fees
+          </a>
+          <a href="#proof" className="hover:text-white">
+            Success Stories
+          </a>
+          <a href="#faq" className="hover:text-white">
+            FAQ
+          </a>
         </nav>
         <button
           onClick={scrollToForm}
@@ -172,15 +169,16 @@ function Hero() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 pt-12 md:grid-cols-2 md:gap-14 md:pb-24 md:pt-16">
         <div className="fade-in-up">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
-            <span className="h-1.5 w-1.5 rounded-full bg-white" /> September Intake · Admissions close {DEADLINE}
+            <span className="h-1.5 w-1.5 rounded-full bg-white" /> September Intake · Admissions
+            close {DEADLINE}
           </span>
           <h1 className="mt-5 text-3xl font-extrabold leading-[1.08] tracking-tight text-white md:text-5xl">
             Become a Doctor with a Globally Recognised{" "}
-            <span className="text-amber-300">Dual Degree MBBS + MPH</span>
+            <span className="text-teal">Dual Degree MBBS + MPH</span>
           </h1>
           <p className="mt-4 max-w-xl text-lg font-medium text-white/90 md:text-xl">
-            Study medicine at Azerbaijan Medical University for just {TUITION_PER_YEAR}/year.
-            No entry test. No foundation year. Recognised by PMDC, WHO &amp; WFME.
+            Study medicine at Azerbaijan Medical University for just {TUITION_PER_YEAR}/year. No
+            entry test. No foundation year. Recognised by PMDC, WHO &amp; WFME.
           </p>
           <ul className="mt-5 grid max-w-md gap-2 text-sm text-white/90 sm:grid-cols-2">
             {[
@@ -405,12 +403,32 @@ function Credibility() {
   // them here as `image: "/proof/student1.jpg"`. Leave image undefined to show
   // a labelled placeholder slot you can fill later.
   const stories: { name: string; detail: string; image?: string }[] = [
-    { name: "Add a success story", detail: "Student name · Class of 20XX" },
-    { name: "Add a success story", detail: "Now practising in the USA / UK" },
-    { name: "Add a success story", detail: "Parent testimonial" },
-    { name: "Add a success story", detail: "Current student in Baku" },
-    { name: "Add a success story", detail: "Postgraduate / USMLE success" },
-    { name: "Add a success story", detail: "International student" },
+    {
+      name: "Ambassador Bilal Hayee & Dr. Shaheer",
+      detail: "Our students at Azerbaijan Medical University",
+      image: "/proof/amu-with-ambassador.jpeg",
+    },
+    {
+      name: "Whitecoat Ceremony",
+      detail: "Students at Azerbaijan Medical University",
+      image: "/proof/whitecoat-group-1.jpeg",
+    },
+    {
+      name: "Whitecoat Ceremony",
+      detail: "Students at Azerbaijan Medical University",
+      image: "/proof/whitecoat-group-2.jpeg",
+    },
+    { name: "Campus Life", detail: "Student groups on campus", image: "/proof/campus-group.jpeg" },
+    {
+      name: "Baku Excursions",
+      detail: "Students on a lake excursion",
+      image: "/proof/lake-trip.jpeg",
+    },
+    {
+      name: "Pakistan Independence Day",
+      detail: "Students with Pakistan flag on Baku streets",
+      image: "/proof/students-flag-night.jpeg",
+    },
   ];
   return (
     <section id="proof" className="bg-surface">
@@ -420,7 +438,8 @@ function Credibility() {
             100+ successful admissions &amp; counting
           </h2>
           <p className="mt-4 text-lg text-ink-muted">
-            Real students. Real results. From our previous batches to postgraduate success in the USA.
+            7+ Years Experience · 550+ Students Guided · 10+ Countries Served. From our previous
+            batches to postgraduate success in the USA.
           </p>
         </div>
 
@@ -459,11 +478,23 @@ function Credibility() {
 
 function HowItWorks() {
   const steps = [
-    { title: "Document Submission", body: "Send your application form, certificates, passport and photo." },
-    { title: "Acceptance Letter", body: "Receive your official admission letter from the university." },
-    { title: "Tuition Payment", body: "Secure your seat with the first payment — clear, written terms." },
+    {
+      title: "Document Submission",
+      body: "Send your application form, certificates, passport and photo.",
+    },
+    {
+      title: "Acceptance Letter",
+      body: "Receive your official admission letter from the university.",
+    },
+    {
+      title: "Tuition Payment",
+      body: "Secure your seat with the first payment — clear, written terms.",
+    },
     { title: "Visa & Tickets", body: "We guide you through the visa and travel arrangements." },
-    { title: "Start Classes", body: `Fly to Baku and begin your medical journey on ${CLASS_START}.` },
+    {
+      title: "Start Classes",
+      body: `Fly to Baku and begin your medical journey on ${CLASS_START}.`,
+    },
   ];
   return (
     <section className="bg-navy text-white">
@@ -473,7 +504,10 @@ function HowItWorks() {
         </h2>
         <div className="mt-14 grid gap-6 md:grid-cols-5">
           {steps.map((s, i) => (
-            <div key={s.title} className="relative rounded-2xl border border-white/15 bg-white/5 p-6">
+            <div
+              key={s.title}
+              className="relative rounded-2xl border border-white/15 bg-white/5 p-6"
+            >
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-red text-sm font-bold text-white">
                 {i + 1}
               </div>
@@ -603,10 +637,19 @@ function EligibilityForm() {
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="grid gap-5 sm:grid-cols-2">
             <FieldShell label="Student's Full Name" required>
-              <input name="student_name" required className={inputCls} placeholder="e.g. Ahmed Khan" />
+              <input
+                name="student_name"
+                required
+                className={inputCls}
+                placeholder="e.g. Ahmed Khan"
+              />
             </FieldShell>
             <FieldShell label="Your Country" hint="Where you currently live">
-              <input name="country" className={inputCls} placeholder="e.g. UAE, Saudi Arabia, Pakistan" />
+              <input
+                name="country"
+                className={inputCls}
+                placeholder="e.g. UAE, Saudi Arabia, Pakistan"
+              />
             </FieldShell>
           </div>
 
@@ -648,7 +691,12 @@ function EligibilityForm() {
               </select>
             </FieldShell>
             <FieldShell label="Grades / Percentage" required hint="Your latest result">
-              <input name="grades" required className={inputCls} placeholder="e.g. 75% / 3.5 GPA / A,B,B" />
+              <input
+                name="grades"
+                required
+                className={inputCls}
+                placeholder="e.g. 75% / 3.5 GPA / A,B,B"
+              />
             </FieldShell>
           </div>
 
@@ -692,8 +740,8 @@ function SuccessCard({ name }: { name: string }) {
         {name ? `Thanks, ${name}!` : "You're almost there!"}
       </h3>
       <p className="mt-3 text-ink-muted">
-        We're opening WhatsApp so our team can confirm your eligibility and send you the full program
-        details. If it didn't open automatically, tap below.
+        We're opening WhatsApp so our team can confirm your eligibility and send you the full
+        program details. If it didn't open automatically, tap below.
       </p>
       <a
         href={fallbackUrl}
@@ -733,7 +781,7 @@ function Faq() {
     },
     {
       q: "How do I know this isn't a scam?",
-      a: "We're a licensed, verified admissions partner with 100+ successful admissions. You can verify the university on official registers, talk to current students, and we provide written terms for every payment.",
+      a: "We're a licensed, verified admissions partner with 7+ years of experience and 100+ successful admissions. You can verify the university on official registers, talk to current students, and we provide 24/7 local support in Azerbaijan.",
     },
   ];
   return (
@@ -797,7 +845,8 @@ function Footer() {
           <div>
             <Logo light />
             <p className="mt-2 text-sm text-white/60">
-              Licensed &amp; verified admissions partner — helping students study medicine abroad.
+              Verified &amp; transparent process — helping students study medicine abroad with 24/7
+              local support.
             </p>
           </div>
           <nav className="flex flex-wrap justify-center gap-6 text-sm">
