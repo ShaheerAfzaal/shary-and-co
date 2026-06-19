@@ -128,20 +128,20 @@ function Logo({ light = false }: { light?: boolean }) {
 
 function Navbar() {
   return (
-    <header className="sticky top-0 z-40 bg-navy text-white shadow-md">
+    <header className="sticky top-0 z-40 bg-teal text-navy shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
         <Logo light />
-        <nav className="hidden gap-8 text-sm font-medium text-white/80 md:flex">
-          <a href="#offer" className="hover:text-white">
+        <nav className="hidden gap-8 text-sm font-medium text-navy md:flex">
+          <a href="#offer" className="rounded-lg px-3 py-2 transition hover:bg-navy/10 hover:outline hover:outline-2 hover:outline-navy focus:bg-navy/10 focus:outline focus:outline-2 focus:outline-navy">
             The Program
           </a>
-          <a href="#fees" className="hover:text-white">
+          <a href="#fees" className="rounded-lg px-3 py-2 transition hover:bg-navy/10 hover:outline hover:outline-2 hover:outline-navy focus:bg-navy/10 focus:outline focus:outline-2 focus:outline-navy">
             Fees
           </a>
-          <a href="#proof" className="hover:text-white">
+          <a href="#proof" className="rounded-lg px-3 py-2 transition hover:bg-navy/10 hover:outline hover:outline-2 hover:outline-navy focus:bg-navy/10 focus:outline focus:outline-2 focus:outline-navy">
             Success Stories
           </a>
-          <a href="#faq" className="hover:text-white">
+          <a href="#faq" className="rounded-lg px-3 py-2 transition hover:bg-navy/10 hover:outline hover:outline-2 hover:outline-navy focus:bg-navy/10 focus:outline focus:outline-2 focus:outline-navy">
             FAQ
           </a>
         </nav>
