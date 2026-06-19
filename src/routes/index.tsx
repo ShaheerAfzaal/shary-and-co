@@ -121,11 +121,7 @@ function SharyLanding() {
 function Logo({ light = false }: { light?: boolean }) {
   return (
     <div className="flex items-center gap-2.5">
-      {light ? (
-        <img src="/brand/logo-dark-bg.png" alt="Shary & Co" className="h-10 w-auto" />
-      ) : (
-        <img src="/brand/logo.jpeg" alt="Shary & Co" className="h-10 w-auto" />
-      )}
+      <img src="/brand/logo-new.png" alt="Shary & Co" className="h-10 w-auto" />
     </div>
   );
 }
