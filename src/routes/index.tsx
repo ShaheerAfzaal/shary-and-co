@@ -88,6 +88,68 @@ function fireLeadEvent() {
   window.fbq?.("track", "Lead", { content_name: "Azerbaijan MBBS Eligibility" });
 }
 
+/** Countdown Timer Component */
+function CountdownTimer() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      // August 25, 2025 23:59 PKT (UTC+5)
+      // Create date in PKT timezone
+      const targetDate = new Date("2025-08-25T23:59:00+05:00").getTime();
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="mt-8 rounded-lg bg-white/10 p-6 text-center">
+      <p className="text-sm text-white/80">⚠️ Limited seats — September intake closes in:</p>
+      <div className="mt-4 flex justify-center gap-4">
+        <div className="flex flex-col items-center">
+          <span className="text-3xl font-bold text-red md:text-4xl">{String(timeLeft.days).padStart(2, "0")}</span>
+          <span className="text-xs text-white/70 md:text-sm">Days</span>
+        </div>
+        <span className="text-2xl font-bold text-red md:text-3xl">:</span>
+        <div className="flex flex-col items-center">
+          <span className="text-3xl font-bold text-red md:text-4xl">{String(timeLeft.hours).padStart(2, "0")}</span>
+          <span className="text-xs text-white/70 md:text-sm">Hours</span>
+        </div>
+        <span className="text-2xl font-bold text-red md:text-3xl">:</span>
+        <div className="flex flex-col items-center">
+          <span className="text-3xl font-bold text-red md:text-4xl">{String(timeLeft.minutes).padStart(2, "0")}</span>
+          <span className="text-xs text-white/70 md:text-sm">Minutes</span>
+        </div>
+        <span className="text-2xl font-bold text-red md:text-3xl">:</span>
+        <div className="flex flex-col items-center">
+          <span className="text-3xl font-bold text-red md:text-4xl">{String(timeLeft.seconds).padStart(2, "0")}</span>
+          <span className="text-xs text-white/70 md:text-sm">Seconds</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** WhatsApp SVG Icon Component */
 function WhatsAppIcon() {
   return (
@@ -224,6 +286,7 @@ function Hero() {
               <WhatsAppIcon /> Chat on WhatsApp
             </a>
           </div>
+          <CountdownTimer />
           <p className="mt-4 text-xs text-white/70">
             🔒 Your details are private. Classes begin {CLASS_START}.
           </p>
