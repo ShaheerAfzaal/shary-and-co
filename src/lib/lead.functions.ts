@@ -19,6 +19,7 @@ const leadSchema = z.object({
   qualification: z.string().optional().default(""),
   grades: z.string().optional().default(""),
   intake: z.string().optional().default(""),
+  budget: z.string().optional().default(""),
 });
 
 export const submitLead = createServerFn({ method: "POST" })

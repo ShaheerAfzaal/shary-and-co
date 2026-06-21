@@ -489,7 +489,7 @@ function Credibility() {
       detail: "Students at Azerbaijan Medical University",
       image: "/proof/whitecoat-group-2.jpeg",
     },
-    { name: "Campus Life", detail: "Student groups on campus", image: "/proof/campus-group.jpeg" },
+    { name: "Campus Life", detail: "Student groups on campus", image: "/proof/campus-life.jpeg" },
     {
       name: "Baku Excursions",
       detail: "Students on a lake excursion",
@@ -498,7 +498,7 @@ function Credibility() {
     {
       name: "Pakistan Independence Day",
       detail: "Students with Pakistan flag on Baku streets",
-      image: "/proof/students-flag-night.jpeg",
+      image: "/proof/pakistan-independence-day.jpeg",
     },
   ];
   return (
@@ -678,6 +678,7 @@ function EligibilityForm() {
       qualification: String(fd.get("qualification") ?? "").trim(),
       grades: String(fd.get("grades") ?? "").trim(),
       intake: String(fd.get("intake") ?? "").trim(),
+      budget: String(fd.get("budget") ?? "").trim(),
     };
 
     if (!data.student_name) return setError("Please enter your full name.");
@@ -779,6 +780,17 @@ function EligibilityForm() {
               {INTAKES.map((i) => (
                 <option key={i}>{i}</option>
               ))}
+            </select>
+          </FieldShell>
+
+          <FieldShell label="Budget" required>
+            <select name="budget" required defaultValue="" className={inputCls}>
+              <option value="" disabled>
+                Select budget range
+              </option>
+              <option>Less than $5,000</option>
+              <option>$5,000–$10,000</option>
+              <option>More than $10,000</option>
             </select>
           </FieldShell>
 
