@@ -18,9 +18,9 @@ import { submitLead } from "@/lib/lead.functions";
 
 // --- Campaign config -------------------------------------------------------
 const WHATSAPP_NUMBER = "923352982999"; // +92 335 2982999 (digits only, intl)
-const DEADLINE = "30 August 2026";
-const CLASS_START = "15 September 2026";
-const TUITION_PER_YEAR = "$10,000";
+const DEADLINE = "25 August 2025";
+const CLASS_START = "15 September 2025";
+const TUITION_PER_YEAR = "$7,950";
 
 // EDIT: paste your explainer video embed URL here (YouTube/Vimeo "embed" link,
 // e.g. "https://www.youtube.com/embed/XXXXXXXX"). Leave "" to show a placeholder.
@@ -33,13 +33,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Globally recognised Dual Degree MBBS/MD + MPH at Azerbaijan Medical University for $10,000/year. No entry test, no foundation year. September intake — check your eligibility in 60 seconds.",
+          "Globally recognised Dual Degree MBBS/MD + MPH at Azerbaijan Medical University for $7,950/year. No entry test, no foundation year. September intake — check your eligibility in 60 seconds.",
       },
       { property: "og:title", content: "Study MBBS in Azerbaijan — Dual Degree | Shary & Co" },
       {
         property: "og:description",
         content:
-          "Globally recognised Dual Degree MBBS + MPH for $10,000/year. September intake. Check your eligibility now.",
+          "Globally recognised Dual Degree MBBS + MPH for $7,950/year. September intake. Check your eligibility now."
       },
       { property: "og:type", content: "website" },
     ],
@@ -347,7 +347,7 @@ function FeeBreakdown() {
     { item: "Tuition — Years 2–6", cost: "$7,950 / year", note: "For years 2 to 6" },
     { item: "Hostel / Accommodation", cost: "$700 / year", note: "Per year" },
     { item: "Service Charges", cost: "$1,000", note: "One-time payment" },
-    { item: "Living Expenses", cost: "$180–250 / month", note: "Food, transport, utilities" },
+    { item: "Living Expenses", cost: "$180–250 / month", note: "Food, transport, utilities (excluding housing)" },
   ];
   return (
     <section id="fees" className="bg-white">

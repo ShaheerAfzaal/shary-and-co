@@ -81,14 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Globally recognised Dual Degree MBBS/MD + MPH at Azerbaijan Medical University for $10,000/year. No entry test, no foundation year. September intake — check your eligibility in 60 seconds.",
+          "Globally recognised Dual Degree MBBS/MD + MPH at Azerbaijan Medical University for $7,950/year. No entry test, no foundation year. September intake — check your eligibility in 60 seconds.",
       },
       { name: "author", content: "Shary & Co" },
       { property: "og:title", content: "Study MBBS in Azerbaijan — Dual Degree | Shary & Co" },
       {
         property: "og:description",
         content:
-          "Globally recognised Dual Degree MBBS + MPH for $10,000/year. September intake. Check your eligibility now.",
+          "Globally recognised Dual Degree MBBS + MPH for $7,950/year. September intake. Check your eligibility now.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
