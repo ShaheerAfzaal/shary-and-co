@@ -120,6 +120,15 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Meta Pixel base code injected into head when VITE_META_PIXEL_ID is set */}
+        {import.meta.env.VITE_META_PIXEL_ID ? (
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${import.meta.env.VITE_META_PIXEL_ID}');fbq('track','PageView');`,
+            }}
+          />
+        ) : null}
       </head>
       <body>
         {children}
@@ -131,6 +140,75 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  // Client-side integration: attach event listeners for Meta Pixel events.
+  // Uses vanilla JS, IntersectionObserver, and guards to ensure each event
+  // fires only once per page session.
+  useEffect(() => {
+    const w = window as any;
+    if (!w) return;
+
+    // Bucket for fired flags to avoid duplicate events.
+    if (!w.__shary_pixel_fired) w.__shary_pixel_fired = {};
+
+    // Helper to safely call fbq if available.
+    const track = (eventName: string, params?: Record<string, unknown>) => {
+      try {
+        if (!w.fbq) return;
+        if (w.__shary_pixel_fired[eventName]) return;
+        w.fbq('track', eventName, params || {});
+        w.__shary_pixel_fired[eventName] = true;
+      } catch (err) {
+        // swallow errors — tracking should not break the app
+      }
+    };
+
+    // 1) Delegate WhatsApp link clicks -> 'Contact'
+    const onClick = (ev: MouseEvent) => {
+      try {
+        const target = ev.target as Element | null;
+        const a = target?.closest ? (target.closest('a') as HTMLAnchorElement | null) : null;
+        if (!a || !a.href) return;
+        const href = a.href;
+        if (href.includes('wa.me') || href.includes('api.whatsapp.com')) {
+          track('Contact');
+        }
+      } catch (e) {
+        /* ignore */
+      }
+    };
+    document.addEventListener('click', onClick, { passive: true });
+
+    // 2) Observe fees section coming into view -> 'ViewContent'
+    const feesEl = document.getElementById('fees');
+    if (feesEl && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            track('ViewContent', { content_name: 'fee_breakdown' });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.5 });
+      io.observe(feesEl);
+    }
+
+    // 3) Video play: detect first user interaction with the iframe (click/focus)
+    const iframe = document.querySelector('iframe[title*="Azerbaijan Medical University"]') as HTMLIFrameElement | null;
+    if (iframe) {
+      const videoPlayHandler = () => {
+        track('ViewContent', { content_name: 'intro_video' });
+        iframe.removeEventListener('click', videoPlayHandler);
+        iframe.removeEventListener('focus', videoPlayHandler);
+      };
+      iframe.addEventListener('click', videoPlayHandler, { passive: true });
+      iframe.addEventListener('focus', videoPlayHandler, { passive: true });
+    }
+
+    return () => {
+      document.removeEventListener('click', onClick);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
