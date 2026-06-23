@@ -90,6 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Globally recognised Dual Degree MBBS + MPH for $7,950/year. September intake. Check your eligibility now.",
       },
+      { property: "og:image", content: "https://www.sharyandco.com/brand/logo.svg" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Study MBBS in Azerbaijan — Dual Degree | Shary & Co" },
@@ -107,6 +108,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap",
       },
+      { rel: "icon", type: "image/png", href: "/brand/logo.svg" },
+      { rel: "apple-touch-icon", href: "/brand/logo.svg" },
+      { rel: "shortcut icon", href: "/brand/logo.svg" },
     ],
   }),
   shellComponent: RootShell,
@@ -120,6 +124,19 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: `{
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Shary & Co",
+            "url": "https://www.sharyandco.com",
+            "logo": "https://www.sharyandco.com/brand/logo.svg",
+            "sameAs": [
+              "https://instagram.com/shary_and_co",
+              "https://wa.me/923352982999"
+            ]
+          }`
+        }} />
         {/* Meta Pixel base code injected into head when VITE_META_PIXEL_ID is set */}
         {import.meta.env.VITE_META_PIXEL_ID ? (
           <script
@@ -138,6 +155,8 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+import { Layout } from "../components/Layout";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
@@ -152,26 +171,43 @@ function RootComponent() {
     if (!w.__shary_pixel_fired) w.__shary_pixel_fired = {};
 
     // Helper to safely call fbq if available.
-    const track = (eventName: string, params?: Record<string, unknown>) => {
+    const track = (eventName: string, params?: Record<string, unknown>, useFiredOnce: boolean = true) => {
       try {
         if (!w.fbq) return;
-        if (w.__shary_pixel_fired[eventName]) return;
-        w.fbq('track', eventName, params || {});
-        w.__shary_pixel_fired[eventName] = true;
+        if (useFiredOnce && w.__shary_pixel_fired[eventName]) return;
+        if (eventName.startsWith('trackCustom')) {
+            w.fbq('trackCustom', params?.eventName as string, params?.data || {});
+        } else {
+            w.fbq('track', eventName, params || {});
+        }
+        if (useFiredOnce) w.__shary_pixel_fired[eventName] = true;
       } catch (err) {
         // swallow errors — tracking should not break the app
       }
     };
 
-    // 1) Delegate WhatsApp link clicks -> 'Contact'
+    // 1) Delegate WhatsApp link clicks & Check Eligibility Clicks
     const onClick = (ev: MouseEvent) => {
       try {
         const target = ev.target as Element | null;
         const a = target?.closest ? (target.closest('a') as HTMLAnchorElement | null) : null;
-        if (!a || !a.href) return;
-        const href = a.href;
-        if (href.includes('wa.me') || href.includes('api.whatsapp.com')) {
-          track('Contact');
+        if (a && a.href) {
+          const href = a.href;
+          if (href.includes('wa.me') || href.includes('api.whatsapp.com')) {
+            track('Contact', {
+              content_name: 'whatsapp_click',
+              content_category: 'CTA'
+            }, false); // allowed to fire multiple times
+          }
+        }
+        
+        const button = target?.closest ? (target.closest('button') as HTMLButtonElement | null) : null;
+        const text = (button?.textContent || a?.textContent || '').toLowerCase();
+        if (text.includes('check eligibility') || text.includes('check my eligibility') || text.includes('check your eligibility')) {
+            track('Lead', {
+              content_name: 'check_eligibility_button',
+              content_category: 'CTA'
+            }, false); // allowed to fire multiple times
         }
       } catch (e) {
         /* ignore */
@@ -193,11 +229,31 @@ function RootComponent() {
       io.observe(feesEl);
     }
 
-    // 3) Video play: detect first user interaction with the iframe (click/focus)
+    // 3) Observe 90% Scroll Depth
+    const handleScroll = () => {
+      if (w.__shary_pixel_fired['ScrollDepth']) return;
+      
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const threshold = document.documentElement.scrollHeight * 0.9;
+      
+      if (scrollPosition >= threshold) {
+        track('trackCustom', {
+          eventName: 'ScrollDepth',
+          data: {
+            content_name: 'page_bottom',
+            depth_percent: 90
+          }
+        });
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // 4) Video play: detect first user interaction with the iframe (click/focus)
     const iframe = document.querySelector('iframe[title*="Azerbaijan Medical University"]') as HTMLIFrameElement | null;
     if (iframe) {
       const videoPlayHandler = () => {
         track('ViewContent', { content_name: 'intro_video' });
+        // YouTube API integration handled within VideoEmbed component directly for better accuracy
         iframe.removeEventListener('click', videoPlayHandler);
         iframe.removeEventListener('focus', videoPlayHandler);
       };
@@ -207,13 +263,16 @@ function RootComponent() {
 
     return () => {
       document.removeEventListener('click', onClick);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Layout>
+        <Outlet />
+      </Layout>
     </QueryClientProvider>
   );
 }

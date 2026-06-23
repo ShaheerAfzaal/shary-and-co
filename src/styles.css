@@ -42,6 +42,25 @@
 
   --font-sans:
     "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Golden Ratio Scale */
+  --spacing-gr-1: 8px;
+  --spacing-gr-2: 13px;
+  --spacing-gr-3: 21px;
+  --spacing-gr-4: 34px;
+  --spacing-gr-5: 55px;
+  --spacing-gr-6: 89px;
+  --spacing-gr-7: 144px;
+
+  /* Golden Ratio Typography */
+  --text-gr-sm: 10px;
+  --text-gr-base: 16px;
+  --text-gr-md: 26px;
+  --text-gr-lg: 42px;
+  --text-gr-xl: 68px;
+
+  /* Container */
+  --container-gr: 1144px;
 }
 
 :root {
