@@ -45,28 +45,100 @@ function TopBar() {
 }
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    closeMenu();
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeMenu(); };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
+
+  const navItemCls = "hover:text-red hover:underline decoration-[#e9be00] decoration-2 underline-offset-4 [&.active]:text-[#ef3e36]";
+  const mobileNavItemCls = "block py-[13px] text-[16px] font-semibold text-[#1a1a1a] border-b border-border last:border-b-0 hover:text-[#ef3e36]";
+
   return (
-    <header className="sticky top-0 z-40 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)] h-[72px] flex items-center">
-      <div className="mx-auto flex w-full max-w-[1144px] items-center justify-between px-[21px]">
+    <header className="sticky top-0 z-40 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
+      <div className="mx-auto flex h-[72px] w-full max-w-[1144px] items-center justify-between px-[21px]">
         <Logo />
         <nav className="hidden lg:flex items-center gap-[34px] text-[15px] font-medium text-[#1a1a1a]">
-          <Link to="/" className="hover:text-red hover:underline decoration-[#e9be00] decoration-2 underline-offset-4 [&.active]:text-[#ef3e36]">Home</Link>
-          <Link to="/about" className="hover:text-red hover:underline decoration-[#e9be00] decoration-2 underline-offset-4 [&.active]:text-[#ef3e36]">About Us</Link>
-          <a href="/#offer" className="hover:text-red hover:underline decoration-[#e9be00] decoration-2 underline-offset-4">The Program</a>
-          <a href="/#fees" className="hover:text-red hover:underline decoration-[#e9be00] decoration-2 underline-offset-4">Fees</a>
-          <a href="/#proof" className="hover:text-red hover:underline decoration-[#e9be00] decoration-2 underline-offset-4">Success Stories</a>
-          <a href="/#faq" className="hover:text-red hover:underline decoration-[#e9be00] decoration-2 underline-offset-4">FAQ</a>
-          <Link to="/blog" className="hover:text-red hover:underline decoration-[#e9be00] decoration-2 underline-offset-4 [&.active]:text-[#ef3e36]">Blog</Link>
+          <Link to="/" className={navItemCls}>Home</Link>
+          <Link to="/about" className={navItemCls}>About Us</Link>
+          <a href="/#offer" className={navItemCls}>The Program</a>
+          <a href="/#fees" className={navItemCls}>Fees</a>
+          <a href="/#proof" className={navItemCls}>Success Stories</a>
+          <a href="/#faq" className={navItemCls}>FAQ</a>
+          <Link to="/blog" className={navItemCls}>Blog</Link>
         </nav>
-        <Link
-          to="/"
-          hash="apply"
-          onClick={handleCheckEligibilityClick}
-          className="rounded-[6px] bg-[#ef3e36] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#c9302a]"
-        >
-          Check Eligibility
-        </Link>
+        <div className="flex items-center gap-[8px]">
+          <Link
+            to="/"
+            hash="apply"
+            onClick={handleCheckEligibilityClick}
+            className="hidden sm:inline-flex rounded-[6px] bg-[#ef3e36] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#c9302a]"
+          >
+            Check Eligibility
+          </Link>
+          <button
+            type="button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            className="lg:hidden inline-flex h-[42px] w-[42px] items-center justify-center rounded-md text-[#1a1a1a] hover:bg-gray-100"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" aria-hidden="true">
+              {menuOpen ? (
+                <>
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                </>
+              ) : (
+                <>
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="17" x2="20" y2="17" />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {menuOpen && (
+        <div
+          id="mobile-menu"
+          className="lg:hidden border-t border-border bg-white shadow-lg"
+        >
+          <nav className="mx-auto max-w-[1144px] px-[21px] py-[8px]">
+            <Link to="/" className={mobileNavItemCls} onClick={closeMenu}>Home</Link>
+            <Link to="/about" className={mobileNavItemCls} onClick={closeMenu}>About Us</Link>
+            <a href="/#offer" className={mobileNavItemCls} onClick={closeMenu}>The Program</a>
+            <a href="/#fees" className={mobileNavItemCls} onClick={closeMenu}>Fees</a>
+            <a href="/#proof" className={mobileNavItemCls} onClick={closeMenu}>Success Stories</a>
+            <a href="/#faq" className={mobileNavItemCls} onClick={closeMenu}>FAQ</a>
+            <Link to="/blog" className={mobileNavItemCls} onClick={closeMenu}>Blog</Link>
+            <Link
+              to="/"
+              hash="apply"
+              onClick={(e) => { handleCheckEligibilityClick(e); closeMenu(); }}
+              className="sm:hidden mt-[13px] mb-[8px] flex items-center justify-center rounded-[6px] bg-[#ef3e36] px-4 py-[13px] text-sm font-bold text-white hover:bg-[#c9302a]"
+            >
+              Check Eligibility →
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
