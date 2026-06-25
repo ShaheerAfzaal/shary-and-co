@@ -38,34 +38,31 @@ function fireCompleteRegistrationEvent() {
 }
 
 /** Countdown Timer Component */
+// Admissions deadline for the September 2026 intake (Asia/Karachi, UTC+5).
+const COUNTDOWN_TARGET = new Date("2026-08-25T23:59:00+05:00").getTime();
+
+function calculateTimeLeft() {
+  const difference = COUNTDOWN_TARGET - Date.now();
+  if (difference <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  }
+  return {
+    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((difference / 1000 / 60) % 60),
+    seconds: Math.floor((difference / 1000) % 60),
+  };
+}
+
 function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  // Lazy initializer computes the real remaining time on first paint so the
+  // timer never flashes 00:00:00 before the effect runs.
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
 
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const targetDate = new Date("2026-08-25T23:59:00+05:00").getTime();
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    };
-
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
+    // Re-sync immediately on mount (covers any drift between SSR and hydration).
+    setTimeLeft(calculateTimeLeft());
+    const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, []);
 
