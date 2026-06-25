@@ -12,7 +12,6 @@ const WHATSAPP_NUMBER = "923352982999";
 const DEADLINE = "25 August 2026";
 const CLASS_START = "15 September 2026";
 const TUITION_PER_YEAR = "$7,950";
-const VIDEO_EMBED_URL = "https://www.youtube.com/embed/8rhreSJXnko";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -166,6 +165,9 @@ function Hero() {
             </a>
           </div>
           <CountdownTimer />
+          <div className="mt-[34px]">
+            <HeroVideo />
+          </div>
         </div>
         <div className="fade-in-up">
           <div className="relative">
@@ -190,26 +192,52 @@ function Hero() {
   );
 }
 
-function VideoEmbed() {
+/* ----------------------------------------------------------------------------
+   Hero explainer video (30–60s).
+
+   EDIT: drop your video in here. Set ONE variable, supports either:
+     • a self-hosted / MP4 file:  "/videos/explainer.mp4"
+     • a YouTube embed URL:        "https://www.youtube.com/embed/VIDEO_ID"
+   Leave it as "" and a clean "Watch: How it works in 60 seconds" poster shows
+   until the real video is ready.
+---------------------------------------------------------------------------- */
+const HERO_VIDEO_URL = "";
+
+function isSelfHostedVideo(url: string) {
+  return /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
+}
+
+function PlayBadge() {
+  return (
+    <span className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-[#C1121F] text-white shadow-lg ring-4 ring-white/30 transition group-hover:scale-105">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </span>
+  );
+}
+
+function HeroVideo() {
+  // YouTube watch-progress -> Meta Pixel (only applies when an embed URL is set).
   useEffect(() => {
+    if (!HERO_VIDEO_URL || isSelfHostedVideo(HERO_VIDEO_URL)) return;
     const handleMessage = (e: MessageEvent) => {
       try {
         const data = JSON.parse(e.data);
         if (data.event === "infoDelivery" && data.info) {
-           const w = window as any;
-           if (!w.__shary_pixel_fired) w.__shary_pixel_fired = {};
-           
-           if (data.info.playerState === 1 && !w.__shary_pixel_fired['VideoPlay']) {
-               w.fbq?.('trackCustom', 'VideoPlay', { content_name: 'dual_degree_explainer_video', video_id: '8rhreSJXnko' });
-               w.__shary_pixel_fired['VideoPlay'] = true;
-           }
-           if (data.info.currentTime && data.info.duration) {
-               const percent = data.info.currentTime / data.info.duration;
-               if (percent >= 0.5 && !w.__shary_pixel_fired['VideoProgress_50']) {
-                   w.fbq?.('trackCustom', 'VideoProgress', { content_name: 'dual_degree_explainer_video', progress: '50_percent' });
-                   w.__shary_pixel_fired['VideoProgress_50'] = true;
-               }
-           }
+          const w = window as any;
+          if (!w.__shary_pixel_fired) w.__shary_pixel_fired = {};
+          if (data.info.playerState === 1 && !w.__shary_pixel_fired["VideoPlay"]) {
+            w.fbq?.("trackCustom", "VideoPlay", { content_name: "dual_degree_explainer_video" });
+            w.__shary_pixel_fired["VideoPlay"] = true;
+          }
+          if (data.info.currentTime && data.info.duration) {
+            const percent = data.info.currentTime / data.info.duration;
+            if (percent >= 0.5 && !w.__shary_pixel_fired["VideoProgress_50"]) {
+              w.fbq?.("trackCustom", "VideoProgress", { content_name: "dual_degree_explainer_video", progress: "50_percent" });
+              w.__shary_pixel_fired["VideoProgress_50"] = true;
+            }
+          }
         }
       } catch (err) {}
     };
@@ -217,27 +245,41 @@ function VideoEmbed() {
     return () => window.removeEventListener("message", handleMessage);
   }, []);
 
-  const srcUrl = VIDEO_EMBED_URL ? `${VIDEO_EMBED_URL}?enablejsapi=1` : "";
+  const hasVideo = Boolean(HERO_VIDEO_URL);
+  const selfHosted = hasVideo && isSelfHostedVideo(HERO_VIDEO_URL);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/20 bg-black/30 shadow-2xl">
-      <div className="relative aspect-video w-full bg-navy-dark">
-        {srcUrl ? (
+    <div className="group overflow-hidden rounded-2xl border border-[#222222]/10 bg-[#222222] shadow-lg">
+      <div className="relative aspect-video w-full bg-[#222222]">
+        {!hasVideo ? (
+          // Poster / play state shown until HERO_VIDEO_URL is set.
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-[16px] bg-gradient-to-br from-[#222222] to-[#1B1F26] text-center">
+            <PlayBadge />
+            <p className="px-6 font-montserrat text-[15px] font-semibold text-[#FAF7F2] md:text-[16px]">
+              Watch: How it works in 60 seconds
+            </p>
+          </div>
+        ) : selfHosted ? (
+          <video
+            className="absolute inset-0 h-full w-full"
+            controls
+            playsInline
+            preload="metadata"
+          >
+            <source src={HERO_VIDEO_URL} />
+          </video>
+        ) : (
           <iframe
-            src={srcUrl}
-            title="Azerbaijan Medical University — Program Overview"
+            src={`${HERO_VIDEO_URL}?enablejsapi=1`}
+            title="Azerbaijan Medical University — How it works in 60 seconds"
             className="absolute inset-0 h-full w-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center text-white/80">
-            <p className="px-6 text-sm font-medium">▶ Your explainer video goes here</p>
-          </div>
         )}
       </div>
-      <div className="bg-white/95 px-4 py-3 text-center text-sm font-semibold text-navy">
-        Watch: How the Dual Degree program works (2 min)
+      <div className="bg-white/95 px-4 py-3 text-center font-montserrat text-sm font-semibold text-[#222222]">
+        Watch: How it works in 60 seconds
       </div>
     </div>
   );
