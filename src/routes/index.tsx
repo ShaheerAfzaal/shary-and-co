@@ -70,27 +70,27 @@ function CountdownTimer() {
   }, []);
 
   return (
-    <div className="mt-[34px] rounded-lg bg-white/10 p-[21px] text-center">
-      <p className="text-sm font-semibold text-white">⚠️ Limited seats — September intake closes in:</p>
+    <div className="mt-[34px] rounded-lg bg-[#222222] p-[21px] text-center">
+      <p className="text-sm font-semibold text-[#FAF7F2]">Limited seats — September intake closes in:</p>
       <div className="mt-[21px] flex justify-center gap-[21px]">
         <div className="flex flex-col items-center">
-          <span className="text-[26px] font-bold text-white md:text-[42px]">{String(timeLeft.days).padStart(2, "0")}</span>
-          <span className="text-xs font-semibold text-white md:text-sm">Days</span>
+          <span className="text-[26px] font-bold text-[#D4A017] md:text-[42px]">{String(timeLeft.days).padStart(2, "0")}</span>
+          <span className="text-xs font-semibold text-[#FAF7F2] md:text-sm">Days</span>
         </div>
-        <span className="text-[26px] font-bold text-white md:text-[42px]">:</span>
+        <span className="text-[26px] font-bold text-[#D4A017] md:text-[42px]">:</span>
         <div className="flex flex-col items-center">
-          <span className="text-[26px] font-bold text-white md:text-[42px]">{String(timeLeft.hours).padStart(2, "0")}</span>
-          <span className="text-xs font-semibold text-white md:text-sm">Hours</span>
+          <span className="text-[26px] font-bold text-[#D4A017] md:text-[42px]">{String(timeLeft.hours).padStart(2, "0")}</span>
+          <span className="text-xs font-semibold text-[#FAF7F2] md:text-sm">Hours</span>
         </div>
-        <span className="text-[26px] font-bold text-white md:text-[42px]">:</span>
+        <span className="text-[26px] font-bold text-[#D4A017] md:text-[42px]">:</span>
         <div className="flex flex-col items-center">
-          <span className="text-[26px] font-bold text-white md:text-[42px]">{String(timeLeft.minutes).padStart(2, "0")}</span>
-          <span className="text-xs font-semibold text-white md:text-sm">Minutes</span>
+          <span className="text-[26px] font-bold text-[#D4A017] md:text-[42px]">{String(timeLeft.minutes).padStart(2, "0")}</span>
+          <span className="text-xs font-semibold text-[#FAF7F2] md:text-sm">Minutes</span>
         </div>
-        <span className="text-[26px] font-bold text-white md:text-[42px]">:</span>
+        <span className="text-[26px] font-bold text-[#D4A017] md:text-[42px]">:</span>
         <div className="flex flex-col items-center">
-          <span className="text-[26px] font-bold text-white md:text-[42px]">{String(timeLeft.seconds).padStart(2, "0")}</span>
-          <span className="text-xs font-semibold text-white md:text-sm">Seconds</span>
+          <span className="text-[26px] font-bold text-[#D4A017] md:text-[42px]">{String(timeLeft.seconds).padStart(2, "0")}</span>
+          <span className="text-xs font-semibold text-[#FAF7F2] md:text-sm">Seconds</span>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@ function CountdownTimer() {
 
 function WhatsAppIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="flex-shrink-0">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
     </svg>
   );
@@ -126,21 +126,19 @@ function SharyLanding() {
 
 function Hero() {
   return (
-    <section className="hero-pattern relative">
-      <div className="plus-pattern absolute inset-0 pointer-events-none" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-[1144px] items-center gap-[55px] px-[21px] pb-[89px] pt-[55px] md:grid-cols-2 md:gap-[89px] md:pb-[144px] md:pt-[89px]">
+    <section className="bg-[#FAF7F2]">
+      <div className="mx-auto grid max-w-[1144px] items-center gap-[55px] px-[21px] pb-[89px] pt-[55px] md:grid-cols-[38fr_62fr] md:gap-[55px] md:pb-[144px] md:pt-[89px]">
         <div className="fade-in-up">
-          <span className="inline-flex items-center gap-[13px] rounded-[8px] bg-[#ef3e36] px-[34px] py-[21px] text-[20px] font-black uppercase tracking-wider text-white shadow-2xl shadow-[#ef3e36]/40 ring-2 ring-white/20 md:text-[28px]">
-            🔴 September Intake · Admissions Close {DEADLINE}
-          </span>
-          <h1 className="mt-[21px] text-[42px] font-extrabold leading-[1.08] tracking-tight text-white md:text-[68px]">
-            Become a Doctor with a Globally Recognised <span className="text-amber-300">Dual Degree MBBS + MPH</span>
+          <h1 className="font-serif text-[40px] font-semibold leading-[1.06] tracking-tight text-[#222222] sm:text-[52px] md:text-[60px] lg:text-[68px]">
+            Become a Doctor with a Globally Recognised{" "}
+            <span className="text-[#C1121F]">Dual Degree</span>{" "}
+            <span className="text-[#D4A017]">MBBS + MPH</span>
           </h1>
-          <p className="mt-[21px] max-w-xl text-[16px] font-medium text-white/90 md:text-[26px]">
+          <p className="mt-[21px] max-w-xl font-montserrat text-[16px] leading-relaxed text-[#222222]/80 md:text-[18px]">
             Study medicine at Azerbaijan Medical University for just {TUITION_PER_YEAR}/year.
             No entry test. No foundation year. Recognised by PMDC, WHO &amp; WFME.
           </p>
-          <ul className="mt-[21px] grid max-w-md gap-[13px] text-[16px] text-white/90 sm:grid-cols-2">
+          <ul className="mt-[21px] grid max-w-md gap-[13px] font-montserrat text-[15px] text-[#222222] sm:grid-cols-2">
             {[
               "Globally recognised degree",
               "USMLE / ECFMG eligible",
@@ -148,7 +146,7 @@ function Hero() {
               "Affordable living (~$250/mo)",
             ].map((b) => (
               <li key={b} className="flex items-center gap-[8px]">
-                <span className="flex h-[21px] w-[21px] flex-shrink-0 items-center justify-center rounded-full bg-white/20 text-[10px]">✓</span>
+                <span className="flex h-[20px] w-[20px] flex-shrink-0 items-center justify-center rounded-full bg-[#D4A017]/15 text-[11px] font-bold text-[#D4A017]">✓</span>
                 {b}
               </li>
             ))}
@@ -156,26 +154,38 @@ function Hero() {
           <div className="mt-[34px] flex flex-col gap-[13px] sm:flex-row">
             <button
               onClick={scrollToForm}
-              className="inline-flex items-center justify-center gap-[8px] rounded-[6px] bg-[#ef3e36] px-[21px] py-[13px] text-[16px] font-bold text-white shadow-lg transition hover:bg-[#c9302a]"
+              className="inline-flex items-center justify-center gap-[8px] rounded-[12px] bg-[#C1121F] px-[28px] py-[15px] font-montserrat text-[16px] font-semibold text-white shadow-md transition hover:bg-[#9e0e19]"
             >
-              Check Your Eligibility — Free <span aria-hidden>→</span>
+              Check Your Eligibility <span aria-hidden>→</span>
             </button>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi Shary & Co, I want to know about the Azerbaijan Dual Degree MBBS program.")}`}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center gap-[8px] rounded-[6px] bg-[#25D366] px-[21px] py-[13px] text-[16px] font-semibold text-white transition hover:bg-[#20BA5E]"
+              className="inline-flex items-center justify-center gap-[8px] rounded-[12px] bg-[#25D366] px-[28px] py-[15px] font-montserrat text-[16px] font-semibold text-white shadow-md transition hover:bg-[#20BA5E]"
             >
               <WhatsAppIcon /> Chat on WhatsApp
             </a>
           </div>
           <CountdownTimer />
-          <p className="mt-[21px] text-[10px] text-white/70">
-            🔒 Your details are private. Classes begin {CLASS_START}.
-          </p>
         </div>
         <div className="fade-in-up">
-          <VideoEmbed />
+          <div className="relative">
+            <div className="group overflow-hidden rounded-2xl shadow-xl ring-1 ring-[#222222]/5">
+              <img
+                src="/amu/amu-hero.jpg"
+                alt="Azerbaijan Medical University campus"
+                className="h-[320px] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 sm:h-[440px] md:h-[580px]"
+              />
+            </div>
+            <div className="absolute left-1/2 top-[18px] -translate-x-1/2 rounded-xl bg-white/95 px-[18px] py-[10px] shadow-lg ring-1 ring-black/5 backdrop-blur">
+              <img
+                src="/amu/amu-university-logo.png"
+                alt="Azerbaijan Medical University"
+                className="h-[34px] w-auto md:h-[40px]"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -235,30 +245,104 @@ function VideoEmbed() {
   );
 }
 
-function Offer() {
-  const points = [
-    { icon: "🎓", title: "Two degrees, one program", body: "Graduate with both an MBBS/MD and a Master of Public Health (MPH) — a combination that sets you apart globally." },
-    { icon: "🌍", title: "Practise anywhere", body: "Recognised by PMDC, WHO, WFME and eligible for USMLE/ECFMG — work in Pakistan, the Gulf, the US, UK and beyond." },
-    { icon: "⚡", title: "Direct entry, no entry test", body: "No foundation year and no interview for eligible applicants. Apply with FSc, A-Levels, Class 12 or an American diploma." },
-    { icon: "💰", title: "Affordable, transparent", body: `Tuition around ${TUITION_PER_YEAR}/year with living costs from just ~$250/month. No hidden charges.` },
-  ];
+const iconSvg = "h-[26px] w-[26px]";
+function GradCapIcon() {
   return (
-    <section id="offer" className="bg-surface">
-      <div className="mx-auto max-w-[1144px] px-[21px] py-[89px] md:py-[144px]">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-[26px] font-extrabold tracking-tight text-navy md:text-[42px]">
-            Why students choose the Azerbaijan Dual Degree
-          </h2>
-          <p className="mt-[21px] text-[16px] text-ink-muted">
-            A globally respected medical education — without the crippling cost of private colleges.
-          </p>
+    <svg className={iconSvg} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 10 12 5 2 10l10 5 10-5Z" /><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5" /><path d="M22 10v5" />
+    </svg>
+  );
+}
+function GlobeIcon() {
+  return (
+    <svg className={iconSvg} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3c2.8 2.4 4.2 5.6 4.2 9s-1.4 6.6-4.2 9c-2.8-2.4-4.2-5.6-4.2-9S9.2 5.4 12 3Z" />
+    </svg>
+  );
+}
+function BoltIcon() {
+  return (
+    <svg className={iconSvg} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M13.5 2 4 13.2h6.2L9.5 22 20 10.3h-6.4L13.5 2Z" />
+    </svg>
+  );
+}
+function FinanceIcon() {
+  return (
+    <svg className={iconSvg} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" /><path d="M12 7v10" /><path d="M14.7 9.3c0-1.2-1.2-1.9-2.7-1.9s-2.7.7-2.7 1.9 1.2 1.7 2.7 1.9 2.7.7 2.7 1.9-1.2 1.9-2.7 1.9-2.7-.7-2.7-1.9" />
+    </svg>
+  );
+}
+
+function Offer() {
+  const cards = [
+    { img: "/program/card1.jpg", alt: "Medical students at Azerbaijan Medical University", title: "Two Degrees, One Program", body: "Graduate with both an MBBS and Master of Public Health (MPH), giving you a competitive advantage for international careers and postgraduate opportunities.", icon: <GradCapIcon /> },
+    { img: "/program/card2.jpg", alt: "Global recognition and international career pathways", title: "Globally Recognised Education", body: "Recognised by PMDC, WHO and WFME, with pathways toward international licensing examinations and global career opportunities.", icon: <GlobeIcon /> },
+    { img: "/program/card3.jpg", alt: "International students on campus", title: "Direct Entry, No Foundation Year", body: "Begin your medical education immediately with a streamlined admission process designed for international students.", icon: <BoltIcon /> },
+    { img: "/program/card4.jpg", alt: "Modern Baku — student life and city living", title: "Affordable, Transparent Investment", body: "Study at a respected medical university while benefiting from significantly lower tuition and living costs than many international alternatives.", icon: <FinanceIcon /> },
+  ];
+  const trust = ["Globally Recognised", "International Exposure", "Modern Curriculum", "Clinical Training", "Safe Environment", "Student Support"];
+  return (
+    <section id="offer" className="bg-[#FAF7F2]">
+      {/* Upper area */}
+      <div className="mx-auto max-w-[1144px] px-[21px] pt-[89px] md:pt-[144px]">
+        <div className="grid items-center gap-[34px] md:grid-cols-[42fr_58fr] md:gap-[34px]">
+          <div className="relative z-10">
+            <span className="font-montserrat text-[13px] font-semibold uppercase tracking-[0.22em] text-[#D4A017]">
+              The Program
+            </span>
+            <h2 className="mt-[16px] font-serif text-[38px] font-semibold leading-[1.05] tracking-tight text-[#222222] md:text-[56px]">
+              Why students choose the Azerbaijani{" "}
+              <span className="text-[#C1121F]">Dual</span>{" "}
+              <span className="text-[#D4A017]">Degree</span>
+            </h2>
+            <div className="mt-[21px] h-[3px] w-[64px] rounded-full bg-[#D4A017]" />
+            <p className="mt-[21px] max-w-md font-montserrat text-[16px] leading-relaxed text-[#222222]/75 md:text-[18px]">
+              A globally respected medical education — without the crippling cost of private colleges.
+            </p>
+          </div>
+          <div className="relative">
+            <div className="overflow-hidden rounded-2xl shadow-xl">
+              <img src="/program/bg-skyline.jpg" alt="Baku, Azerbaijan skyline at sunset" className="h-[280px] w-full object-cover md:h-[420px]" />
+            </div>
+            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/30 to-transparent md:from-[#FAF7F2] md:via-[#FAF7F2]/25" />
+          </div>
         </div>
-        <div className="mt-[55px] grid gap-[34px] md:grid-cols-2">
-          {points.map((p) => (
-            <div key={p.title} className="rounded-2xl border border-border bg-white p-[34px] shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-              <div className="text-[42px]">{p.icon}</div>
-              <h3 className="mt-[21px] text-[26px] font-bold text-navy">{p.title}</h3>
-              <p className="mt-[13px] text-[16px] text-ink-muted">{p.body}</p>
+      </div>
+
+      {/* Four cards */}
+      <div className="mx-auto max-w-[1144px] px-[21px] pt-[55px] md:pt-[72px]">
+        <div className="grid gap-[28px] md:grid-cols-4 md:gap-[21px]">
+          {cards.map((c) => (
+            <div key={c.title} className="group flex flex-col overflow-hidden rounded-2xl border border-[#E7E1D8] bg-[#FAF7F2] shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div className="overflow-hidden">
+                <img src={c.img} alt={c.alt} className="h-[170px] w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              </div>
+              <div className="-mt-[28px] flex justify-center">
+                <span className="flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#C1121F] text-white shadow-md ring-4 ring-[#FAF7F2]">
+                  {c.icon}
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col px-[21px] pb-[28px] pt-[13px] text-center">
+                <h3 className="font-serif text-[22px] font-semibold leading-tight text-[#222222]">{c.title}</h3>
+                <div className="mx-auto mt-[10px] h-[2px] w-[34px] rounded-full bg-[#D4A017]" />
+                <p className="mt-[13px] font-montserrat text-[13px] leading-relaxed text-[#222222]/70">{c.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Trust bar */}
+      <div className="mx-auto max-w-[1144px] px-[21px] pb-[89px] pt-[34px] md:pb-[144px]">
+        <div className="grid grid-cols-2 gap-x-[16px] gap-y-[16px] rounded-2xl border border-[#E7E1D8] bg-white/50 px-[28px] py-[24px] sm:grid-cols-3 md:grid-cols-6">
+          {trust.map((t) => (
+            <div key={t} className="flex items-center gap-[8px] font-montserrat text-[13px] font-medium text-[#222222]">
+              <svg className="h-[18px] w-[18px] flex-shrink-0 text-[#D4A017]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m20 6-11 11-5-5" />
+              </svg>
+              {t}
             </div>
           ))}
         </div>
@@ -299,7 +383,7 @@ function FeeBreakdown() {
               {rows.map((r, i) => (
                 <tr key={r.item} className={i % 2 ? "bg-surface" : "bg-white"}>
                   <td className="px-[21px] py-[13px] font-medium text-navy">{r.item}</td>
-                  <td className="px-[21px] py-[13px] font-bold text-red">{r.cost}</td>
+                  <td className="px-[21px] py-[13px] font-bold text-[#15803D]">{r.cost}</td>
                   <td className="hidden px-[21px] py-[13px] text-ink-muted sm:table-cell">{r.note}</td>
                 </tr>
               ))}
@@ -587,7 +671,7 @@ function EligibilityForm() {
 
           {error && <p className="text-[16px] font-medium text-red-600">{error}</p>}
 
-          <button type="submit" disabled={submitting} className="w-full rounded-[6px] bg-[#ef3e36] px-[34px] py-[21px] text-[16px] font-bold text-white shadow-lg shadow-red/20 transition hover:-translate-y-0.5 hover:bg-[#c9302a] disabled:cursor-not-allowed disabled:opacity-60">
+          <button type="submit" disabled={submitting} className="w-full rounded-[6px] bg-[#C1121F] px-[34px] py-[21px] text-[16px] font-bold text-white shadow-lg shadow-red/20 transition hover:-translate-y-0.5 hover:bg-[#9e0e19] disabled:cursor-not-allowed disabled:opacity-60">
             {submitting ? "Checking..." : "Check My Eligibility →"}
           </button>
           <p className="text-center text-[10px] text-ink-muted">
@@ -611,7 +695,7 @@ function SuccessCard({ name }: { name: string }) {
         We're opening WhatsApp so our team can confirm your eligibility and send you the full
         program details. If it didn't open automatically, tap below.
       </p>
-      <a href={fallbackUrl} target="_blank" rel="noreferrer" className="mt-[34px] inline-flex items-center justify-center gap-[8px] rounded-[6px] bg-[#ef3e36] px-[34px] py-[21px] text-[16px] font-bold text-white transition hover:bg-[#c9302a]">
+      <a href={fallbackUrl} target="_blank" rel="noreferrer" className="mt-[34px] inline-flex items-center justify-center gap-[8px] rounded-[6px] bg-[#C1121F] px-[34px] py-[21px] text-[16px] font-bold text-white transition hover:bg-[#9e0e19]">
         Continue on WhatsApp →
       </a>
     </div>
@@ -668,7 +752,7 @@ function FinalCTA() {
           eligibility today — it's free and takes 60 seconds.
         </p>
         <div className="mt-[55px]">
-          <button onClick={scrollToForm} className="rounded-[6px] bg-[#ef3e36] px-[55px] py-[21px] text-[16px] font-bold text-white shadow-lg transition hover:bg-[#c9302a] hover:-translate-y-0.5">
+          <button onClick={scrollToForm} className="rounded-[6px] bg-[#C1121F] px-[55px] py-[21px] text-[16px] font-bold text-white shadow-lg transition hover:bg-[#9e0e19] hover:-translate-y-0.5">
             Check My Eligibility — Free →
           </button>
         </div>

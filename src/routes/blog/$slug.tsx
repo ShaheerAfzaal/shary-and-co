@@ -62,7 +62,7 @@ function BlogPost() {
           <Link
             to="/"
             hash="apply"
-            className="rounded-[6px] bg-[#ef3e36] px-[34px] py-[13px] text-[16px] font-bold text-white transition hover:bg-[#c9302a]"
+            className="rounded-[6px] bg-[#C1121F] px-[34px] py-[13px] text-[16px] font-bold text-white transition hover:bg-[#9e0e19]"
           >
             Check Eligibility
           </Link>

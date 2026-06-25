@@ -42,6 +42,10 @@
 
   --font-sans:
     "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif:
+    "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", serif;
+  --font-montserrat:
+    "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Golden Ratio Scale */
   --spacing-gr-1: 8px;
@@ -71,8 +75,8 @@
   --navy-dark: #1B1F26;
   --teal: #FBB507;
   --teal-dark: #D99A00;
-  --red: #D5071C;
-  --red-dark: #A80417;
+  --red: #C1121F;
+  --red-dark: #9e0e19;
   --surface: #FBF8F4;
   --ink: #282C35;
   --ink-muted: #5C6270;
@@ -119,7 +123,7 @@
   background-image:
     radial-gradient(circle at 20% 20%, rgba(251, 181, 7, 0.25) 0, transparent 45%),
     radial-gradient(circle at 80% 70%, rgba(40, 44, 53, 0.4) 0, transparent 50%),
-    linear-gradient(135deg, #D5071C 0%, #A80417 45%, #1B1F26 100%);
+    linear-gradient(135deg, #C1121F 0%, #9e0e19 45%, #1B1F26 100%);
   color: #ffffff;
 }
 
@@ -133,7 +137,7 @@
 }
 
 @utility stats-gradient {
-  background-image: linear-gradient(90deg, #D5071C 0%, #FBB507 100%);
+  background-image: linear-gradient(90deg, #C1121F 0%, #FBB507 100%);
 }
 
 @utility fade-in-up {

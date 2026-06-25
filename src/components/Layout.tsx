@@ -6,7 +6,11 @@ const WHATSAPP_NUMBER = "923352982999";
 function Logo({ light = false }: { light?: boolean }) {
   return (
     <Link to="/" className="flex items-center gap-2.5">
-      <img src="/brand/logo.svg" alt="Shary & Co" style={{ height: "56px", width: "auto" }} />
+      <img
+        src={light ? "/brand/logo.svg" : "/brand/logo-shary.png"}
+        alt="Shary & Co — Education Consultants"
+        className="h-[44px] w-auto md:h-[52px]"
+      />
     </Link>
   );
 }
@@ -20,26 +24,10 @@ function handleCheckEligibilityClick(e: React.MouseEvent) {
 
 function TopBar() {
   return (
-    <div className="bg-[#e9be00] text-[#1a1a1a] h-[42px] flex items-center justify-center px-4 overflow-hidden">
-      <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.08em] flex items-center justify-center gap-3 whitespace-nowrap">
-        <span>GLOBALLY RECOGNISED · INTERNATIONALLY RESPECTED</span>
-        <span className="hidden md:inline">|</span>
-        <div className="hidden md:flex items-center gap-3">
-          <span>WDOMS</span>
-          <span>|</span>
-          <span>PMDC</span>
-          <span>|</span>
-          <span>WHO</span>
-          <span>|</span>
-          <span>WFME</span>
-          <span>|</span>
-          <span>ECFMG / USMLE</span>
-          <span>|</span>
-          <span>IARR</span>
-          <span>|</span>
-          <span>NMC India</span>
-        </div>
-      </div>
+    <div className="bg-[#C1121F] text-[#FAF7F2] min-h-[40px] flex items-center justify-center px-4 py-1.5">
+      <span className="font-montserrat text-[10px] md:text-xs font-semibold uppercase tracking-[0.14em] text-center">
+        September Intake · Admissions Close 25 August 2026
+      </span>
     </div>
   );
 }
@@ -64,14 +52,14 @@ function Navbar() {
     };
   }, [menuOpen]);
 
-  const navItemCls = "hover:text-red hover:underline decoration-[#e9be00] decoration-2 underline-offset-4 [&.active]:text-[#ef3e36]";
-  const mobileNavItemCls = "block py-[13px] text-[16px] font-semibold text-[#1a1a1a] border-b border-border last:border-b-0 hover:text-[#ef3e36]";
+  const navItemCls = "hover:text-[#C1121F] hover:underline decoration-[#D4A017] decoration-2 underline-offset-4 [&.active]:text-[#C1121F]";
+  const mobileNavItemCls = "block py-[13px] font-montserrat text-[16px] font-medium text-[#222222] border-b border-border last:border-b-0 hover:text-[#C1121F]";
 
   return (
     <header className="sticky top-0 z-40 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
       <div className="mx-auto flex h-[72px] w-full max-w-[1144px] items-center justify-between px-[21px]">
         <Logo />
-        <nav className="hidden lg:flex items-center gap-[34px] text-[15px] font-medium text-[#1a1a1a]">
+        <nav className="hidden lg:flex items-center gap-[34px] font-montserrat text-[15px] font-medium text-[#222222]">
           <Link to="/" className={navItemCls}>Home</Link>
           <Link to="/about" className={navItemCls}>About Us</Link>
           <a href="/#offer" className={navItemCls}>The Program</a>
@@ -81,21 +69,13 @@ function Navbar() {
           <Link to="/blog" className={navItemCls}>Blog</Link>
         </nav>
         <div className="flex items-center gap-[8px]">
-          <Link
-            to="/"
-            hash="apply"
-            onClick={handleCheckEligibilityClick}
-            className="hidden sm:inline-flex rounded-[6px] bg-[#ef3e36] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#c9302a]"
-          >
-            Check Eligibility
-          </Link>
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className="lg:hidden inline-flex h-[42px] w-[42px] items-center justify-center rounded-md text-[#1a1a1a] hover:bg-gray-100"
+            className="lg:hidden inline-flex h-[42px] w-[42px] items-center justify-center rounded-md text-[#222222] hover:bg-gray-100"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" aria-hidden="true">
               {menuOpen ? (
@@ -132,7 +112,7 @@ function Navbar() {
               to="/"
               hash="apply"
               onClick={(e) => { handleCheckEligibilityClick(e); closeMenu(); }}
-              className="sm:hidden mt-[13px] mb-[8px] flex items-center justify-center rounded-[6px] bg-[#ef3e36] px-4 py-[13px] text-sm font-bold text-white hover:bg-[#c9302a]"
+              className="sm:hidden mt-[13px] mb-[8px] flex items-center justify-center rounded-[6px] bg-[#C1121F] px-4 py-[13px] text-sm font-bold text-[#FAF7F2] hover:bg-[#9e0e19]"
             >
               Check Eligibility →
             </Link>
@@ -203,7 +183,7 @@ function MobileStickyBar() {
         to="/"
         hash="apply"
         onClick={handleCheckEligibilityClick}
-        className="flex w-full items-center justify-center rounded-[6px] bg-[#ef3e36] px-4 py-3 text-sm font-bold text-white hover:bg-[#c9302a]"
+        className="flex w-full items-center justify-center rounded-[6px] bg-[#C1121F] px-4 py-3 text-sm font-bold text-white hover:bg-[#9e0e19]"
       >
         Check My Eligibility — Free →
       </Link>

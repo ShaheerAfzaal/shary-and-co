@@ -47,7 +47,7 @@ function FounderSection() {
         <div>
           {/* Founder Bio */}
           <div>
-            <span className="inline-block rounded-[6px] bg-[#ef3e36] px-[13px] py-[8px] text-[10px] font-extrabold uppercase tracking-wider text-white">
+            <span className="inline-block rounded-[6px] bg-[#C1121F] px-[13px] py-[8px] text-[10px] font-extrabold uppercase tracking-wider text-white">
               Founder
             </span>
             <h2 className="mt-[21px] text-[26px] font-extrabold tracking-tight text-navy md:text-[42px]">
@@ -66,15 +66,15 @@ function FounderSection() {
             </p>
             <div className="mt-[34px] flex flex-wrap gap-[21px]">
               <div className="rounded-xl border border-border bg-white px-[21px] py-[13px] text-center shadow-sm">
-                <div className="text-[26px] font-extrabold text-[#ef3e36]">250+</div>
+                <div className="text-[26px] font-extrabold text-[#C1121F]">250+</div>
                 <div className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">Students Helped</div>
               </div>
               <div className="rounded-xl border border-border bg-white px-[21px] py-[13px] text-center shadow-sm">
-                <div className="text-[26px] font-extrabold text-[#ef3e36]">7+</div>
+                <div className="text-[26px] font-extrabold text-[#C1121F]">7+</div>
                 <div className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">Years Experience</div>
               </div>
               <div className="rounded-xl border border-border bg-white px-[21px] py-[13px] text-center shadow-sm">
-                <div className="text-[26px] font-extrabold text-[#ef3e36]">10+</div>
+                <div className="text-[26px] font-extrabold text-[#C1121F]">10+</div>
                 <div className="text-[10px] font-bold uppercase tracking-wider text-ink-muted">Countries Served</div>
               </div>
             </div>
@@ -196,7 +196,7 @@ function CTA() {
           <Link
             to="/"
             hash="apply"
-            className="inline-flex items-center justify-center rounded-[6px] bg-[#ef3e36] px-[55px] py-[21px] text-[16px] font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#c9302a]"
+            className="inline-flex items-center justify-center rounded-[6px] bg-[#C1121F] px-[55px] py-[21px] text-[16px] font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#9e0e19]"
           >
             Check Eligibility →
           </Link>
