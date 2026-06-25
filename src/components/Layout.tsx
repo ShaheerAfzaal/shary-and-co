@@ -142,9 +142,9 @@ function Footer() {
             <a href="https://instagram.com/shary_and_co" className="hover:text-white">
               Instagram
             </a>
-            <a href="#" className="hover:text-white">
+            <Link to="/privacy" className="hover:text-white">
               Privacy Policy
-            </a>
+            </Link>
           </nav>
           <div className="text-sm md:text-right">
             📞 +92 335 2982999
