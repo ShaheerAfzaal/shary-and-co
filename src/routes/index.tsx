@@ -135,8 +135,9 @@ function Hero() {
             <span className="text-[#D4A017]">MBBS + MPH</span>
           </h1>
           <p className="mt-[21px] max-w-xl font-montserrat text-[16px] leading-relaxed text-[#222222]/80 md:text-[18px]">
-            Study medicine at Azerbaijan Medical University for just {TUITION_PER_YEAR}/year.
+            Study medicine at Azerbaijan Medical University from just {TUITION_PER_YEAR}/year.
             No entry test. No foundation year. Recognised by PMDC, WHO &amp; WFME.
+            {/* TODO: accreditation — verify "PMDC, WHO & WFME" recognition wording before ad launch */}
           </p>
           <ul className="mt-[21px] grid max-w-md gap-[13px] font-montserrat text-[15px] text-[#222222] sm:grid-cols-2">
             {[
@@ -278,6 +279,7 @@ function FinanceIcon() {
 function Offer() {
   const cards = [
     { img: "/program/card1.jpg", alt: "Medical students at Azerbaijan Medical University", title: "Two Degrees, One Program", body: "Graduate with both an MBBS and Master of Public Health (MPH), giving you a competitive advantage for international careers and postgraduate opportunities.", icon: <GradCapIcon /> },
+    // TODO: accreditation — verify "PMDC, WHO and WFME" recognition claim before ad launch
     { img: "/program/card2.jpg", alt: "Global recognition and international career pathways", title: "Globally Recognised Education", body: "Recognised by PMDC, WHO and WFME, with pathways toward international licensing examinations and global career opportunities.", icon: <GlobeIcon /> },
     { img: "/program/card3.jpg", alt: "International students on campus", title: "Direct Entry, No Foundation Year", body: "Begin your medical education immediately with a streamlined admission process designed for international students.", icon: <BoltIcon /> },
     { img: "/program/card4.jpg", alt: "Modern Baku — student life and city living", title: "Affordable, Transparent Investment", body: "Study at a respected medical university while benefiting from significantly lower tuition and living costs than many international alternatives.", icon: <FinanceIcon /> },
@@ -704,7 +706,9 @@ function SuccessCard({ name }: { name: string }) {
 
 function Faq() {
   const items = [
+    // TODO: accreditation — verify PMDC recognition / "international medical registers" claim before ad launch
     { q: "Is this degree recognised in Pakistan (PMDC)?", a: "Azerbaijan Medical University is listed on international medical registers, and we'll send you the official recognition listings so you can verify it yourself before you commit." },
+    // TODO: accreditation — verify "WDOMS-listed and ECFMG/USMLE eligible" claim before ad launch
     { q: "Can I do USMLE or practise in the US / UK?", a: "Yes — the degree is WDOMS-listed and ECFMG/USMLE eligible, which is the pathway to practise in the US, and recognised across the UK, Gulf and beyond." },
     { q: "Is there an entry test or interview?", a: "No entry test and no foundation year for eligible applicants. An interview is not required for the Dual Degree program, subject to profile evaluation." },
     { q: "Is Azerbaijan safe for Pakistani students?", a: "Azerbaijan is a Muslim-majority country with halal food, mosques and a large, welcoming international student community. We'll connect you with current students." },
