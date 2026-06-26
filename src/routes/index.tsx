@@ -347,7 +347,6 @@ function Offer() {
             <div className="overflow-hidden rounded-2xl shadow-xl">
               <img src="/program/bg-skyline.jpg" alt="Baku, Azerbaijan skyline at sunset" className="h-[280px] w-full object-cover md:h-[420px]" />
             </div>
-            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/30 to-transparent md:from-[#FAF7F2] md:via-[#FAF7F2]/25" />
           </div>
         </div>
       </div>
@@ -489,7 +488,7 @@ function CredibilityCarousel() {
   ];
 
   return (
-    <section id="proof" className="bg-surface">
+    <section id="proof" className="bg-[#FAF7F2]">
       <div className="mx-auto max-w-[1144px] px-[21px] py-[89px] md:py-[144px]">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-[26px] font-extrabold tracking-tight text-navy md:text-[42px]">
@@ -596,13 +595,13 @@ function FieldShell({ label, required, hint, children }: { label: string; requir
 
 function EligibilitySection() {
   return (
-    <section id="apply" className="bg-surface">
+    <section id="apply" className="dark-red-band">
       <div className="mx-auto max-w-3xl px-[21px] py-[89px] md:py-[144px]">
         <div className="text-center">
-          <h2 className="text-[26px] font-extrabold tracking-tight text-navy md:text-[42px]">
+          <h2 className="text-[26px] font-extrabold tracking-tight text-[#FAF7F2] md:text-[42px]">
             Check your eligibility — free, 60 seconds
           </h2>
-          <p className="mt-[21px] text-[16px] text-ink-muted">
+          <p className="mt-[21px] text-[16px] text-[#FAF7F2]/80">
             Tell us about yourself and we'll confirm your eligibility on WhatsApp right away.
           </p>
         </div>
@@ -762,7 +761,7 @@ function Faq() {
   };
 
   return (
-    <section id="faq" className="bg-white">
+    <section id="faq" className="bg-[#FAF7F2]">
       <div className="mx-auto max-w-3xl px-[21px] py-[89px] md:py-[144px]">
         <h2 className="text-center text-[26px] font-extrabold tracking-tight text-navy md:text-[42px]">
           Questions parents &amp; students ask
@@ -785,7 +784,7 @@ function Faq() {
 
 function FinalCTA() {
   return (
-    <section className="hero-pattern relative">
+    <section className="dark-red-band relative">
       <div className="relative mx-auto max-w-[1144px] px-[21px] py-[89px] text-center md:py-[144px]">
         <h2 className="text-[26px] font-extrabold tracking-tight text-white md:text-[42px]">
           Admissions close {DEADLINE}
