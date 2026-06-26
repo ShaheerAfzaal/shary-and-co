@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { FileText, Mail, Plane, CreditCard, GraduationCap } from "lucide-react";
 import { submitLead } from "@/lib/lead.functions";
 
 /* ============================================================================
@@ -540,29 +541,68 @@ function CredibilityCarousel() {
 }
 
 function HowItWorks() {
+  // Step order: Document Submission → Acceptance Letter → Visa & Tickets →
+  // Tuition Payment → Start Classes.
   const steps = [
-    { title: "Document Submission", body: "Send your application form, certificates, passport and photo." },
-    { title: "Acceptance Letter", body: "Receive your official admission letter from the university." },
-    { title: "Tuition Payment", body: "Secure your seat with the first payment — clear, written terms." },
-    { title: "Visa & Tickets", body: "We guide you through the visa and travel arrangements." },
-    { title: "Start Classes", body: `Fly to Baku and begin your medical journey on ${CLASS_START}.` },
+    { title: "Document Submission", body: "Send your application form, certificates, passport and photo.", Icon: FileText },
+    { title: "Acceptance Letter", body: "Receive your official admission letter from the university.", Icon: Mail },
+    { title: "Visa & Tickets", body: "We guide you through the visa and travel arrangements.", Icon: Plane },
+    { title: "Tuition Payment", body: "Secure your seat with the first payment — clear, written terms.", Icon: CreditCard },
+    { title: "Start Classes", body: `Fly to Baku and begin your medical journey on ${CLASS_START}.`, Icon: GraduationCap },
   ];
   return (
-    <section className="bg-navy text-white">
+    <section className="bg-white">
+      {/* Full-width dark-red header bar (intentional red block in this white section) */}
+      <div className="dark-red-band">
+        <div className="mx-auto max-w-[1144px] px-[21px] py-[55px] text-center md:py-[72px]">
+          <h2 className="font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-[#FAF7F2] sm:text-[40px] md:text-[52px]">
+            5 simple steps from applying to your first class
+          </h2>
+          <div className="mx-auto mt-[21px] h-[3px] w-[64px] rounded-full bg-[#D4A017]" />
+        </div>
+      </div>
+
+      {/* White section body */}
       <div className="mx-auto max-w-[1144px] px-[21px] py-[89px] md:py-[144px]">
-        <h2 className="text-center text-[26px] font-extrabold tracking-tight md:text-[42px]">
-          5 simple steps from applying to your first class
-        </h2>
-        <div className="mt-[89px] grid gap-[34px] md:grid-cols-5">
-          {steps.map((s, i) => (
-            <div key={s.title} className="relative rounded-2xl border border-white/15 bg-white/5 p-[34px]">
-              <div className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-red text-sm font-bold text-white">
-                {i + 1}
-              </div>
-              <h3 className="mt-[21px] text-[26px] font-bold text-white">{s.title}</h3>
-              <p className="mt-[13px] text-[16px] text-white/75">{s.body}</p>
-            </div>
-          ))}
+        <ol className="mx-auto max-w-2xl">
+          {steps.map((s, i) => {
+            const last = i === steps.length - 1;
+            const Icon = s.Icon;
+            return (
+              <li key={s.title} className="flex gap-[21px] md:gap-[28px]">
+                {/* Vertical gold connector with node */}
+                <div className="flex flex-none flex-col items-center" aria-hidden="true">
+                  <span className="h-[18px] w-[18px] flex-none rounded-full bg-[#D4A017] shadow-sm ring-4 ring-white" />
+                  {!last && <span className="w-[2px] flex-1 bg-[#D4A017]" />}
+                </div>
+                {/* Raised cream card */}
+                <div className={`flex-1 rounded-2xl border border-[#E7E1D8] bg-[#FAF7F2] p-[28px] shadow-md shadow-black/5 md:p-[34px] ${last ? "" : "mb-[34px]"}`}>
+                  <div className="flex items-center gap-[16px]">
+                    <Icon className="h-[30px] w-[30px] flex-none text-[#C1121F]" strokeWidth={1.75} aria-hidden="true" />
+                    <span className="font-serif text-[44px] font-semibold leading-none text-[#C1121F] md:text-[52px]">
+                      {i + 1}
+                    </span>
+                  </div>
+                  <h3 className="mt-[16px] font-serif text-[26px] font-semibold leading-tight text-[#222222] md:text-[30px]">
+                    {s.title}
+                  </h3>
+                  <p className="mt-[8px] font-montserrat text-[15px] leading-relaxed text-[#222222]/70 md:text-[16px]">
+                    {s.body}
+                  </p>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+
+        {/* Aspirational payoff image — drop the real student photo at the path below */}
+        <div className="mt-[55px] overflow-hidden rounded-2xl shadow-xl md:mt-[89px]">
+          <img
+            src="/5-steps/payoff.jpg"
+            alt="Shary & Co students beginning their medical journey at Azerbaijan Medical University"
+            className="aspect-[16/9] w-full object-cover md:aspect-[21/9]"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
