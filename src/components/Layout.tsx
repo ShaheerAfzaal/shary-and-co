@@ -24,7 +24,7 @@ function handleCheckEligibilityClick(e: React.MouseEvent) {
 
 function TopBar() {
   return (
-    <div className="bg-[#C1121F] text-[#FAF7F2] min-h-[40px] flex items-center justify-center px-4 py-1.5">
+    <div className="dark-red-band text-[#FAF7F2] min-h-[40px] flex items-center justify-center px-4 py-1.5">
       <span className="font-montserrat text-[10px] md:text-xs font-semibold uppercase tracking-[0.14em] text-center">
         September Intake · Admissions Close 25 August 2026
       </span>

@@ -144,7 +144,7 @@
    the "5 simple steps" header bar, the eligibility form section, the final CTA,
    and the About page background. Change it here to update every band at once. */
 @utility dark-red-band {
-  background-image: linear-gradient(180deg, #C1121F 0%, #A80F1A 35%, #6F090D 75%, #1A0C0C 100%);
+  background-image: linear-gradient(180deg, #D9060C 0%, #AD0008 35%, #61060D 75%, #1D0B0B 100%);
 }
 
 @utility fade-in-up {
