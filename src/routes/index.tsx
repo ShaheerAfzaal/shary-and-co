@@ -552,19 +552,16 @@ function HowItWorks() {
   ];
   return (
     <section className="bg-white">
-      {/* Full-width dark-red header bar (intentional red block in this white section) */}
-      <div className="dark-red-band">
-        <div className="mx-auto max-w-[1144px] px-[21px] py-[55px] text-center md:py-[72px]">
-          <h2 className="font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-[#FAF7F2] sm:text-[40px] md:text-[52px]">
-            5 simple steps from applying to your first class
-          </h2>
-          <div className="mx-auto mt-[21px] h-[3px] w-[64px] rounded-full bg-[#D4A017]" />
-        </div>
-      </div>
-
       {/* White section body */}
       <div className="mx-auto max-w-[1144px] px-[21px] py-[89px] md:py-[144px]">
-        <ol className="mx-auto max-w-2xl">
+        {/* Centered dark-red header band — width set by golden ratio (~62% of the container) */}
+        <div className="dark-red-band mx-auto w-full max-w-[710px] rounded-2xl px-[34px] py-[44px] text-center shadow-lg md:py-[55px]">
+          <h2 className="font-serif text-[28px] font-semibold leading-[1.12] tracking-tight text-[#FAF7F2] sm:text-[36px] md:text-[44px]">
+            5 simple steps from applying to your first class
+          </h2>
+        </div>
+
+        <ol className="mx-auto mt-[55px] max-w-2xl md:mt-[72px]">
           {steps.map((s, i) => {
             const last = i === steps.length - 1;
             const Icon = s.Icon;
@@ -575,15 +572,15 @@ function HowItWorks() {
                   <span className="h-[18px] w-[18px] flex-none rounded-full bg-[#D4A017] shadow-sm ring-4 ring-white" />
                   {!last && <span className="w-[2px] flex-1 bg-[#D4A017]" />}
                 </div>
-                {/* Raised cream card */}
-                <div className={`flex-1 rounded-2xl border border-[#E7E1D8] bg-[#FAF7F2] p-[28px] shadow-md shadow-black/5 md:p-[34px] ${last ? "" : "mb-[34px]"}`}>
-                  <div className="flex items-center gap-[16px]">
-                    <Icon className="h-[30px] w-[30px] flex-none text-[#C1121F]" strokeWidth={1.75} aria-hidden="true" />
-                    <span className="font-serif text-[44px] font-semibold leading-none text-[#C1121F] md:text-[52px]">
+                {/* Raised cream card — number:icon scaled by golden ratio (~1.618) */}
+                <div className={`flex-1 rounded-2xl border border-[#E7E1D8] bg-[#FAF7F2] p-[34px] shadow-xl shadow-black/10 md:p-[40px] ${last ? "" : "mb-[34px]"}`}>
+                  <div className="flex items-center gap-[21px]">
+                    <Icon className="h-[40px] w-[40px] flex-none text-[#C1121F] md:h-[44px] md:w-[44px]" strokeWidth={1.75} aria-hidden="true" />
+                    <span className="font-serif text-[64px] font-semibold leading-none text-[#C1121F] md:text-[72px]">
                       {i + 1}
                     </span>
                   </div>
-                  <h3 className="mt-[16px] font-serif text-[26px] font-semibold leading-tight text-[#222222] md:text-[30px]">
+                  <h3 className="mt-[21px] font-serif text-[26px] font-bold leading-tight text-[#222222] md:text-[30px]">
                     {s.title}
                   </h3>
                   <p className="mt-[8px] font-montserrat text-[15px] leading-relaxed text-[#222222]/70 md:text-[16px]">
@@ -808,7 +805,7 @@ function Faq() {
         </h2>
         <div className="mt-[55px] space-y-[21px]">
           {items.map((it) => (
-            <details key={it.q} onToggle={(e) => onToggle(it.q, (e.target as HTMLDetailsElement).open)} className="group rounded-xl border border-border bg-surface p-[34px] [&_summary]:cursor-pointer">
+            <details key={it.q} onToggle={(e) => onToggle(it.q, (e.target as HTMLDetailsElement).open)} className="group rounded-xl border border-border bg-white p-[34px] shadow-lg shadow-black/5 [&_summary]:cursor-pointer">
               <summary className="flex items-center justify-between font-semibold text-navy text-[16px]">
                 {it.q}
                 <span className="ml-[21px] text-red transition group-open:rotate-45">+</span>

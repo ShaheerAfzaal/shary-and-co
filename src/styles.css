@@ -140,10 +140,11 @@
   background-image: linear-gradient(90deg, #C1121F 0%, #FBB507 100%);
 }
 
-/* Conversion / emphasis band — deep vertical red. Used by the eligibility form,
-   the final CTA, and the "5 simple steps" header bar. */
+/* Conversion / emphasis band — single reusable dark-red gradient token. Used by
+   the "5 simple steps" header bar, the eligibility form section, the final CTA,
+   and the About page background. Change it here to update every band at once. */
 @utility dark-red-band {
-  background-image: linear-gradient(180deg, #4e0009 0%, #330006 100%);
+  background-image: linear-gradient(180deg, #C1121F 0%, #A80F1A 35%, #6F090D 75%, #1A0C0C 100%);
 }
 
 @utility fade-in-up {
