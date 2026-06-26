@@ -12,24 +12,26 @@ export const Route = createFileRoute("/about")({
 
 const WHATSAPP_NUMBER = "923352982999";
 
+// Gradient applied only to the top "About Shary & Co" hero block.
+const ABOUT_HERO_GRADIENT =
+  "linear-gradient(180deg, #D9060C 0%, #AD0008 35%, #61060D 75%, #1D0B0B 100%)";
+
 function AboutPage() {
-  // Whole-page background uses the shared dark-red gradient token; sections are
-  // transparent and text is light/cream for contrast.
   return (
-    <div className="dark-red-band text-[#FAF7F2]">
+    <>
       <Hero />
       <FounderSection />
       <WhoWeAre />
       <WhatSetsUsApart />
       <OurMission />
       <CTA />
-    </div>
+    </>
   );
 }
 
 function Hero() {
   return (
-    <section className="py-[89px] md:py-[144px] text-white">
+    <section className="py-[89px] md:py-[144px] text-white" style={{ backgroundImage: ABOUT_HERO_GRADIENT }}>
       <div className="mx-auto max-w-[1144px] px-[21px] text-center">
         <h1 className="text-[42px] font-extrabold tracking-tight md:text-[68px]">
           About Shary & Co
@@ -44,30 +46,30 @@ function Hero() {
 
 function FounderSection() {
   return (
-    <section className="py-[89px] md:py-[144px]">
+    <section className="bg-surface py-[89px] md:py-[144px]">
       <div className="mx-auto max-w-3xl px-[21px]">
         <div>
           {/* Founder Bio */}
           <div>
-            <span className="inline-block rounded-[6px] bg-[#D4A017] px-[13px] py-[8px] text-[10px] font-extrabold uppercase tracking-wider text-[#222222]">
+            <span className="inline-block rounded-[6px] bg-[#C1121F] px-[13px] py-[8px] text-[10px] font-extrabold uppercase tracking-wider text-white">
               Founder
             </span>
-            <h2 className="mt-[21px] text-[26px] font-extrabold tracking-tight text-[#FAF7F2] md:text-[42px]">
+            <h2 className="mt-[21px] text-[26px] font-extrabold tracking-tight text-navy md:text-[42px]">
               Dr. Shaheer Bin Afzaal
             </h2>
-            <p className="mt-[21px] text-[16px] text-[#FAF7F2]/85 leading-relaxed">
-              A graduate of <strong className="text-white">Azerbaijan Medical University (Class of 2023)</strong>,
+            <p className="mt-[21px] text-[16px] text-ink-muted leading-relaxed">
+              A graduate of <strong className="text-navy">Azerbaijan Medical University (Class of 2023)</strong>,
               Dr. Shaheer served as the Vice President of the International Students Association Azerbaijan.
               He founded Shary & Co in 2019 with a simple mission: to help other aspiring students experience
               the same world-class education and opportunities he received.
             </p>
-            <p className="mt-[21px] text-[16px] text-[#FAF7F2]/85 leading-relaxed">
-              Since founding the company, Dr. Shaheer has personally helped over <strong className="text-white">250+ students
+            <p className="mt-[21px] text-[16px] text-ink-muted leading-relaxed">
+              Since founding the company, Dr. Shaheer has personally helped over <strong className="text-navy">250+ students
               from multiple countries</strong> secure admission to various medical universities across Europe —
               making Shary & Co one of the most trusted names in international medical admissions.
             </p>
             {/* Founder portrait */}
-            <div className="mt-[34px] mx-auto max-w-[400px] overflow-hidden rounded-2xl border border-white/15 shadow-2xl">
+            <div className="mt-[34px] mx-auto max-w-[400px] overflow-hidden rounded-2xl border border-border shadow-xl">
               <img
                 src="/team/dr-shaheer.jpeg"
                 alt="Dr. Shaheer Bin Afzaal, Founder & CEO of Shary & Co"
@@ -98,21 +100,21 @@ function FounderSection() {
 
 function WhoWeAre() {
   return (
-    <section className="py-[89px] md:py-[144px]">
+    <section className="bg-white py-[89px] md:py-[144px]">
       <div className="mx-auto max-w-3xl px-[21px]">
         <div>
-          <h2 className="text-[26px] font-extrabold tracking-tight text-[#FAF7F2] md:text-[42px]">
+          <h2 className="text-[26px] font-extrabold tracking-tight text-navy md:text-[42px]">
             Who We Are
           </h2>
-          <p className="mt-[21px] text-[16px] text-[#FAF7F2]/85 leading-relaxed">
-            <strong className="text-white">Shary & Co</strong> is a dedicated admission consultancy specializing
+          <p className="mt-[21px] text-[16px] text-ink-muted leading-relaxed">
+            <strong className="text-navy">Shary & Co</strong> is a dedicated admission consultancy specializing
             in helping students secure admission to all universities in Azerbaijan. Founded by Dr. Shaheer,
             a graduate of Azerbaijan Medical University, the company was born from his desire to assist other
             aspiring students in experiencing the beauty and academic opportunities of this hidden gem of a country.
           </p>
-          <p className="mt-[21px] text-[16px] text-[#FAF7F2]/85 leading-relaxed">
-            With over <strong className="text-white">7 years</strong> of operational experience and more than
-            <strong className="text-white"> 100+ successful admissions abroad</strong>, Shary & Co has become a
+          <p className="mt-[21px] text-[16px] text-ink-muted leading-relaxed">
+            With over <strong className="text-navy">7 years</strong> of operational experience and more than
+            <strong className="text-navy"> 100+ successful admissions abroad</strong>, Shary & Co has become a
             trusted guide for students seeking a bright future in Azerbaijan's esteemed educational institutions.
             In addition to admissions, the company arranges trips for parents, provides access to student grades,
             and offers career guidance post-graduation, ensuring comprehensive support throughout the entire academic journey.
@@ -148,12 +150,12 @@ function WhatSetsUsApart() {
   ];
 
   return (
-    <section className="py-[89px] md:py-[144px]">
+    <section className="bg-surface py-[89px] md:py-[144px]">
       <div className="mx-auto max-w-[1144px] px-[21px]">
-        <h2 className="text-center text-[26px] font-extrabold tracking-tight text-[#FAF7F2] md:text-[42px]">
+        <h2 className="text-center text-[26px] font-extrabold tracking-tight text-navy md:text-[42px]">
           What Sets Us Apart
         </h2>
-        <p className="mx-auto mt-[21px] max-w-2xl text-center text-[16px] text-[#FAF7F2]/85">
+        <p className="mx-auto mt-[21px] max-w-2xl text-center text-[16px] text-ink-muted">
           We don't just process applications — we support each student's entire journey to becoming a doctor.
         </p>
         <div className="mt-[55px] grid gap-[34px] md:grid-cols-2">
@@ -172,7 +174,7 @@ function WhatSetsUsApart() {
 
 function OurMission() {
   return (
-    <section className="py-[89px] md:py-[144px] text-white">
+    <section className="bg-navy py-[89px] md:py-[144px] text-white">
       <div className="mx-auto max-w-[1144px] px-[21px]">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-[26px] font-extrabold tracking-tight md:text-[42px]">
@@ -195,7 +197,7 @@ function OurMission() {
 
 function CTA() {
   return (
-    <section className="relative text-white py-[89px] md:py-[144px]">
+    <section className="hero-pattern relative text-white py-[89px] md:py-[144px]">
       <div className="relative mx-auto max-w-[1144px] px-[21px] text-center">
         <h2 className="text-[26px] font-extrabold tracking-tight md:text-[42px]">
           Ready to start your journey?
